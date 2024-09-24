@@ -8,15 +8,16 @@
 # @File    : main.py
 # @IDE     : PyCharm
 
-### PROCESS BASED ON HTTPS ###
 
 import os
+import rsa
 import random
-from binascii import b2a_hex, a2b_hex
+import multiprocessing
 from tkinter import *
 from tkinter import messagebox
-import rsa
+from binascii import b2a_hex, a2b_hex
 from Crypto.Cipher import AES
+
 
 '''
 Crypto报错处理
@@ -24,7 +25,7 @@ Crypto报错处理
 pip install pycryptodome
 pip install crypto
 pip install pycrypto
-然后去报错文件夹\AppData\Local\Programs\Python\Python311\Lib\site-packages 小写crypto改大写Crypto
+然后去库文件夹\AppData\Local\Programs\Python\Python311\Lib\site-packages 小写crypto改大写Crypto
 from Crypto.Cipher import AES仍然红线不用理会，可以成功运行
 
 方法2 (未测试)
@@ -155,6 +156,8 @@ def AES解密():
 
 
 if __name__ == '__main__':  # 主进程:界面
+
+    multiprocessing.freeze_support() #pyinstaller打包多线程需要，不然崩一堆窗口
 
     # 创建一个主窗口
     top = Tk()
